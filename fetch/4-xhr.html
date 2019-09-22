@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="message"></div>
+    <script>
+      const message = document.querySelector("#message");
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        console.log(xhr.readyState);
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          message.innerHTML =
+            xhr.status === 200 ? xhr.responseText : `ErrorCode: ${xhr.status}`;
+        }
+
+        xhr.open("GET", "/person", true);
+        xhr.send();
+      };
+    </script>
+  </body>
+</html>
